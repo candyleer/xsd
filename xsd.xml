@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns="http://xsd.com/schema/loom"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:tool="http://www.springframework.org/schema/tool"
+	targetNamespace="http://xsd.com/schema/loom">
+
+	<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+	<xsd:import namespace="http://www.springframework.org/schema/beans" />
+	<xsd:import namespace="http://www.springframework.org/schema/tool" />
+
+	<xsd:annotation>
+		<xsd:documentation><![CDATA[ Namespace support for the loom services provided by loom framework. ]]></xsd:documentation>
+	</xsd:annotation>
+
+
+
+
+
+	<xsd:complexType name="applicationType">
+		<xsd:attribute name="id" type="xsd:ID">
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The unique identifier for a bean. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+        <xsd:attribute name="owner" type="xsd:string" use="optional" default="">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[ The application owner. ]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="registryType">
+		<xsd:attribute name="id" type="xsd:ID">
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The unique identifier for a bean. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="protocol" type="xsd:string" use="optional" default="zookeeper">
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The registry protocol eg: zookeeper. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="address" type="xsd:string" use="optional">
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The registry address. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="timeout" type="xsd:string" use="optional" default="20000">
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The request timeout. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+
+
+
+
+	<xsd:complexType name="serviceType">
+		<xsd:attribute name="id" type="xsd:string" use="required">
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The unique identifier for a bean. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="ref" type="xsd:string" use="required">
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The implementation class Id. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="api" type="xsd:string" use="required">
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The service api. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="port" type="xsd:string" use="required">
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The service port. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="threads" type="xsd:string" use="optional" default="32">
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The thread pool size. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="version" type="xsd:string" use="optional" default="1.0">
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The service version. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="owner" type="xsd:string" use="optional" default="">
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The service owner. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="timeout" type="xsd:string" use="optional" default="30000">
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The consumer timeout. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="registry" type="xsd:string" use="optional">
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The registry id. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="remark" type="xsd:string" use="optional" default="REMARK">
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The registry remark. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="referenceType">
+		<xsd:attribute name="id" type="xsd:ID">
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The unique identifier for a bean. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="api" type="xsd:string" use="required">
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The service api. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="version" type="xsd:string" use="optional" default="1.0">
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The consumer version. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="timeout" type="xsd:string" use="optional" default="30000">
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The consumer timeout. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="registry" type="xsd:string" use="optional">
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The registry id. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="sid" type="xsd:string" use="required">
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The registry service name. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="surl" type="xsd:string" use="optional">
+			<xsd:annotation>
+				<xsd:documentation><![CDATA[ The registry p2p address. ]]></xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+        <xsd:attribute name="owner" type="xsd:string" use="optional" default="">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[ The reference owner. ]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="synch" type="xsd:string" use="optional" default="false">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[ The registry p2p address. ]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+	</xsd:complexType>
+
+
+	<xsd:element name="application" type="applicationType">
+		<xsd:annotation>
+			<xsd:documentation><![CDATA[ The application config eg: <loom:application name="product-serv" /> ]]></xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+
+	<xsd:element name="registry" type="registryType">
+		<xsd:annotation>
+			<xsd:documentation><![CDATA[ The registry config eg: <loom:registry id="zk01" protocol="zookeeper" address="xxx,xxx,xxx" timeout="20000"/> ]]></xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+
+
+
+	<xsd:element name="service" type="serviceType">
+		<xsd:annotation>
+			<xsd:documentation><![CDATA[ Export service config eg: <loom:service proxy="com.xxx.order.xxxx" api="com.xxx.order.xxx.Api" version="1.0" owner="panda" registry="zk01"/> ]]></xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+
+	<xsd:element name="reference" type="referenceType">
+		<xsd:annotation>
+			<xsd:documentation><![CDATA[ Reference service config eg: <loom:reference api="com.xxx.order.xxx.Api" version="1.0"  timeout="30000" registry="zk01"/> ]]></xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+
+
+
+
+    <xsd:complexType name="countType">
+        <xsd:attribute name="id" type="xsd:ID">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[ The unique identifier for a bean. ]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="ip" type="xsd:string">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[  ]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="port" type="xsd:string">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[  ]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="pwd" type="xsd:string">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[  ]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="detail" type="xsd:string" use="optional" default="true">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[ Detail statistic ]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+    </xsd:complexType>
+    
+    
+    
+
+
+    <xsd:element name="count" type="countType">
+        <xsd:annotation>
+            <xsd:documentation><![CDATA[ Export count config eg:  ]]></xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+
+
+    <xsd:complexType name="monitorType">
+        <xsd:attribute name="id" type="xsd:ID">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[ The unique identifier for a bean. ]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="url" type="xsd:string">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[  ]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="port" type="xsd:string">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[  ]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="samplerate" type="xsd:string" use="optional" default="0.01">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[  ]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+    </xsd:complexType>
+
+    <xsd:element name="monitor" type="monitorType">
+        <xsd:annotation>
+            <xsd:documentation><![CDATA[ Export monitor config eg:  ]]></xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+
+
+
+</xsd:schema>
