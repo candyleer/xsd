@@ -27,6 +27,11 @@
                 <xsd:documentation><![CDATA[ The application owner. ]]></xsd:documentation>
             </xsd:annotation>
         </xsd:attribute>
+        <xsd:attribute name="name" type="xsd:string" use="optional" default="applicationBean">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[ The application owner. ]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
 	</xsd:complexType>
 
 
